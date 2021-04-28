@@ -24,6 +24,25 @@ body {
     height: 100%;
     cursor: pointer;
 }
+.author_selection {
+    margin: 0 20px;
+}
+.author_selection span {
+    color: #808080;
+    margin: 0 10px;
+}
+.author_selection select {
+    width: 100px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #1e2d3b;
+    color: white;
+    border: 1px solid #808080;
+    cursor: pointer;
+}
+.author_selection select:hover {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}
 .container {
     width: 85%;
     margin: 0 auto;

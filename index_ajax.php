@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
     <title>Dischi</title>
@@ -18,6 +18,13 @@
         <div class="header">
             <div class="logo">
                 <img src="img/logo.png" alt="Logo Spotify">
+            </div>
+            <div class="author_selection">
+                <span>Seleziona Artista</span>
+                <select @change="authorsFilter" name="author" id="author" v-model="selected">
+                    <option value="All">All</option>
+                    <option v-for="author in authors" :value=author>{{author}}</option>
+                </select>
             </div>
         </div>
         <div class="container">
