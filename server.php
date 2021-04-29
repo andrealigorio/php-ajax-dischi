@@ -4,8 +4,16 @@
     $author = $_GET["author"];
 
     header('Content-Type: application/json');
-
-    if(empty($author) || $author == "All") {
+    
+    if(!empty($_GET["authorsList"])) {
+        $authorsList = [];
+        if($_GET["authorsList"] == true) {
+            foreach($database as $disc) {
+                $authorsList[] = $disc["author"];
+            }
+        }
+        echo json_encode($authorsList);
+    } else if(empty($author) || $author == "All") {
         echo json_encode($database);
     } else {
         $newDatabase = [];

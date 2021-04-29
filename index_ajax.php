@@ -23,7 +23,7 @@
                 <span>Seleziona Artista</span>
                 <select @change="authorsFilter" name="author" id="author" v-model="selected">
                     <option value="All">All</option>
-                    <option v-for="author in authors" :value=author>{{author}}</option>
+                    <option v-for="author in authorsList" :value=author>{{author}}</option>
                 </select>
             </div>
         </div>

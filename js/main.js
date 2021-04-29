@@ -2,21 +2,23 @@ Vue.config.devtools = true;
 var app = new Vue({
     el: "#app",
     data: {
+        windowLocation: `${window.location.protocol}//${window.location.hostname}:${window.location.port}/php-ajax-dischi`,
         cards: {},
-        authors: [],
+        authorsList: [],
         selected: "All"
     },
     methods: {
         authorArray() {
-            this.cards.forEach(element => {
-                if(!this.authors.includes(element)) {
-                    this.authors.push(element.author);
-                }
-            });
+            axios
+                .get(`${this.windowLocation}/server.php/?authorsList=true`)
+                .then((response) => {
+                    this.authorsList = response.data;
+                    this.authorsList.sort();
+                })
         },
         authorsFilter() {
             axios
-                .get(`${window.location.protocol}//${window.location.hostname}${window.location.port}/php-ajax-dischi/server.php/?author=${this.selected}`)
+                .get(`${this.windowLocation}/server.php/?author=${this.selected}`)
                 .then((response) => {
                     response.data.forEach(element => {
                         if(this.selected == "All") {
@@ -30,7 +32,7 @@ var app = new Vue({
     },
     mounted() {
         axios
-            .get(`${window.location.protocol}//${window.location.hostname}${window.location.port}/php-ajax-dischi/server.php`)
+            .get(`${this.windowLocation}/server.php`)
             .then((response) => {
                 this.cards = response.data;
                 this.authorArray();
